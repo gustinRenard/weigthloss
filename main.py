@@ -1,58 +1,59 @@
-##########################
-#Données de l'utilisateur#
-##########################
+#####################
+#Data about the user#
+#####################
 
 """
-user_taille -> m
-user_poids -> kg
-user_sexe -> 0 si fille et 1 si mec
-user_img_obj -> entre 10 et 15
-user_rythme -> entre 0.75 et 1
+user_height -> m
+user_weight -> kg
+user_gender -> 0 if woman et 1 if man
+user_fmi_goal -> between 10 and 15
+user_pace -> between 0.75 and 1
 """
 
-#Par default
-user_taille = 1.79
-user_poids = 87.4
+#Default
+user_height = 1.79
+user_weight = 87.4
 user_age = 17
-user_sexe = 1
-user_img_obj = 10
-user_rythme = 1
+user_gender = 1
+user_fmi_goal = 10
+user_pace = 1
 
-#Personnalisation
+#Input version
 """
-user_taille = float(input("Taille :"))
-user_poids = float(input("Poids :"))
+user_height = float(input("height :"))
+user_weight = float(input("weight :"))
 user_age = float(input("Age :"))
-user_sexe = int(input("Sexe :"))
-user_img_obj = int(input("Objectif masse grasse :"))
-user_rythme = float(input("Rythme :"))
+user_gender = int(input("gender :"))
+user_fmi_goal = int(input("goal fmi:"))
+user_pace = float(input("pace :"))
 """
 
-###################
-#Calcul de données#
-###################
+#############
+#Calculation#
+#############
 
-user_imc = user_poids/(user_taille**2)
-user_img_reel = ((1.2*user_imc)+(0.23*user_age)-(10.8*user_sexe)-5.4)/100
-user_poids_gras = user_poids*user_img_reel
-user_poids_gras_zero = user_poids-user_poids_gras
-user_poids_obj = round(user_poids_gras_zero+(user_poids_gras_zero*(user_img_obj/100)),2)
-user_poids_loose = round(user_poids-user_poids_obj)
+user_bmi = user_weight/(user_height**2)
+user_fmi_real = ((1.2*user_bmi)+(0.23*user_age)-(10.8*user_gender)-5.4)/100
+user_weight_fat = user_weight*user_fmi_real
+user_weight_fat_zero = user_weight-user_weight_fat
+user_weight_goal = round(user_weight_fat_zero+(user_weight_fat_zero*(user_fmi_goal/100)),2)
+user_weight_loose = round(user_weight-user_weight_goal)
 
-print("\nObjectif :",user_poids_obj,"\nPoids a perdre :",user_poids_loose)
+print("\ngoal :",user_weight_goal,"\ntotal to loose:",user_weight_loose)
 
 semaine = 0
 
-while user_poids > user_poids_obj:
+while user_weight > user_weight_goal:
     semaine += 1
-    user_poids_week = round(user_poids*(user_rythme/100),2)
-    user_poids = round(user_poids-user_poids_week,2)
-    print("\nSemaine :",semaine,"Poids objectif en fin de semaine :",user_poids,"\nPoids a perdre pour reussir l'objectif :",user_poids_week)
+    user_weight_week = round(user_weight*(user_pace/100),2)
+    user_weight = round(user_weight-user_weight_week,2)
+    print("\nWeek :",semaine,"goal weight of the week :",user_weight,"\nweight to loose for reach the goal :",user_weight_week)
 
-print("\nMois :",semaine/4)
-print(round(user_poids_loose/(semaine/4),2),"kg/mois")
+print("\nMonths :",semaine/4)
+print(round(user_weight_loose/(semaine/4),2),"kg/month")
 
 """
 Gustin Renard
-Lundi 29 Avril 2019
+Tuesday 30 Avril 2019
+English
 """
